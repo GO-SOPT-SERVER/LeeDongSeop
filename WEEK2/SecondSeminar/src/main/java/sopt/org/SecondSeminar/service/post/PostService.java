@@ -25,4 +25,28 @@ public class PostService {
         // 저장한 게시물 아이디 값 반환
         return newPost.getId();
     }
+
+    public Post findOne(Long postId) {
+        Post post = null;
+
+        for (Post curPost : postList) {
+            if (curPost.getId().equals(postId)) {
+                post = curPost;
+            }
+        }
+
+        return post;
+    }
+
+    public Post findByTitle(String postTitle) {
+        Post post = null;
+
+        for (Post curPost : postList) {
+            if (curPost.getTitle().equals(postTitle)) {
+                post = curPost;
+            }
+        }
+
+        return post;
+    }
 }
