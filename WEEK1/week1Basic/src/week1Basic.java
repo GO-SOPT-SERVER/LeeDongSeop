@@ -1,6 +1,6 @@
 import examples.*;
 
-public class basicAssignment {
+public class week1Basic {
     public static void main(String[] args) {
         System.out.println("=====================================");
         System.out.println("[1] 클래스와 인스턴스");
