@@ -8,6 +8,7 @@ import sopt.org.week2Advanced.domain.pet.Pet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static sopt.org.week2Advanced.Week2AdvancedApplication.petList;
 
@@ -44,12 +45,14 @@ public class PetService {
     }
 
     public List<PetResponseDto> findAll() {
-        List<PetResponseDto> petDtoList = new ArrayList<>();
-        for (Pet curPet : petList) {
-            petDtoList.add(new PetResponseDto(curPet.getId(), curPet.getName(), curPet.getSpecies(), curPet.getGender(), curPet.getAge()));
-        }
+//        List<PetResponseDto> petDtoList = new ArrayList<>();
+//        for (Pet curPet : petList) {
+//            petDtoList.add(new PetResponseDto(curPet.getId(), curPet.getName(), curPet.getSpecies(), curPet.getGender(), curPet.getAge()));
+//        }
+//        return petDtoList;
 
-        return petDtoList;
+        return petList.stream().map(PetResponseDto::new).collect(Collectors.toList());
+
     }
 
     public Long edit(UpdateRequestDto request) {

@@ -30,7 +30,8 @@ public class PetController {
 
         Pet findPet = petService.findOne(petId);
 
-        return new PetResponseDto(findPet.getId(), findPet.getName(), findPet.getSpecies(), findPet.getGender(), findPet.getAge());
+//        return new PetResponseDto(findPet.getId(), findPet.getName(), findPet.getSpecies(), findPet.getGender(), findPet.getAge());
+        return new PetResponseDto(findPet);
     }
 
     @GetMapping("/pet")
