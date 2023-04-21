@@ -42,7 +42,7 @@ public class SoptBankService {
                     finish = true;
                     break;
                 default:
-                    System.out.println("유효하지 않은 요청번호입니다.");
+                    System.out.println("[Error] 유효하지 않은 요청번호입니다.");
                     break;
             }
             System.out.println();
