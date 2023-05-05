@@ -23,7 +23,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/user/signup")
+    @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)
     public ApiResponseDto<UserResponseDto> create(@RequestBody @Valid final UserRequestDto request) throws userDuplicatedNicknameException, userDuplicatedEmailException {
         return ApiResponseDto.success(SuccessStatus.SIGNUP_SUCCESS, userService.create(request));

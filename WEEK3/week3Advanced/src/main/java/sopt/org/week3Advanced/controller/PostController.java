@@ -25,7 +25,7 @@ public class PostController {
     private final UserService userService;
     private final PostService postService;
 
-    @PostMapping("/post/upload")
+    @PostMapping("/post")
     @ResponseStatus(HttpStatus.CREATED)
     public ApiResponseDto<PostResponseDto> upload(@RequestBody @Valid final PostRequestDto request) throws uploadPostUserNotExistException {
         Optional<User> optionalUser = Optional.ofNullable(userService.findOne(request.getUserId()));
