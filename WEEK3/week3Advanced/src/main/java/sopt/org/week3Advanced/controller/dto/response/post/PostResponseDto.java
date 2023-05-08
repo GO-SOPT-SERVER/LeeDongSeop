@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class PostResponseDto {
+public class PostResponseDto { //Post가 생성되었을 때 간단한 정보만 return하는 dto
 
     private Long postId;
     private String title;

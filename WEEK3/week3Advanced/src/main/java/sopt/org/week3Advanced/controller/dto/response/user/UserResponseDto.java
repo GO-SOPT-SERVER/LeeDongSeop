@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserResponseDto {
+public class UserResponseDto { //User가 생성되었을 때 간단한 정보만 return하는 dto
 
     private Long userId;
     private String nickname;

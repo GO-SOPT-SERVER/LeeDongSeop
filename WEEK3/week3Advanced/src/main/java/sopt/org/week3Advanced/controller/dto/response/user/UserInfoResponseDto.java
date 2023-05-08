@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserInfoResponseDto {
+public class UserInfoResponseDto { //찾은 User 객체의 정보를 return하기 위한 dto
 
     private Long userId;
 

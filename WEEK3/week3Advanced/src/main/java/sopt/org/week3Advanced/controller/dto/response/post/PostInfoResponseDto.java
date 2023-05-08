@@ -8,7 +8,7 @@ import sopt.org.week3Advanced.domain.Post;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class PostInfoResponseDto {
+public class PostInfoResponseDto { //찾은 Post 객체의 정보를 return하기 위한 dto
 
     private Long postId;
 
