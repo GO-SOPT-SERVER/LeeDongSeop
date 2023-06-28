@@ -7,7 +7,7 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
-import sopt.org.jwtSeminar.config.jwt.JwtService;
+import sopt.org.jwtSeminar.config.jwt.JwtProvider;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
@@ -16,11 +16,11 @@ import javax.validation.constraints.NotNull;
 @Component
 public class UserIdResolver implements HandlerMethodArgumentResolver {
 
-    private final JwtService jwtService;
+    private final JwtProvider jwtProvider;
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.hasParameterAnnotation(UserId.class) && Long.class.equals(parameter.getParameterType());
+        return parameter.hasParameterAnnotation(UserId.class) && String.class.equals(parameter.getParameterType());
     }
 
     @Override
@@ -29,16 +29,11 @@ public class UserIdResolver implements HandlerMethodArgumentResolver {
         final String token = request.getHeader("Authorization");
 
         // 토큰 검증
-        if (!jwtService.verifyToken(token)) {
+        if (!jwtProvider.validateToken(token)) {
             throw new RuntimeException(String.format("USER_ID를 가져오지 못했습니다. (%s - %s)", parameter.getClass(), parameter.getMethod()));
         }
 
-        // 유저 아이디 반환
-        final String tokenContents = jwtService.getJwtContents(token);
-        try {
-            return Long.parseLong(tokenContents);
-        } catch (NumberFormatException e) {
-            throw new RuntimeException(String.format("USER_ID를 가져오지 못했습니다. (%s - %s)", parameter.getClass(), parameter.getMethod()));
-        }
+        // 유저 이메일 반환
+        return jwtProvider.getEmail(token.split(" ")[1].trim());
     }
 }

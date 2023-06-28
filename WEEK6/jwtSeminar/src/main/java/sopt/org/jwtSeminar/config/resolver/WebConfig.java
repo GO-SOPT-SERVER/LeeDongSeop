@@ -1,4 +1,4 @@
-package sopt.org.jwtSeminar.config;
+package sopt.org.jwtSeminar.config.resolver;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

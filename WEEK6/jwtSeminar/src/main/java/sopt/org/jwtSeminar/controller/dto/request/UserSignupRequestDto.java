@@ -11,7 +11,7 @@ import javax.validation.constraints.Pattern;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserRequestDto {
+public class UserSignupRequestDto {
 
     @NotBlank
     @Pattern(regexp = "^[가-힣a-zA-Z]{2,10}$", message = "닉네임 형식에 맞지 않습니다")

@@ -1,14 +1,16 @@
 package sopt.org.jwtSeminar.domain;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class User extends AuditingTimeEntity {
 
     @Id
@@ -18,19 +20,24 @@ public class User extends AuditingTimeEntity {
     @Column(nullable = false)
     private String nickname;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
-    private User(String nickname, String email, String password) {
-        this.nickname = nickname;
-        this.email = email;
-        this.password = password;
+    private String refreshToken;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<Authority> roles = new ArrayList<>();
+
+    public void setRoles(List<Authority> role) {
+        this.roles = role;
+        role.forEach(o -> o.setUser(this));
     }
 
-    public static User newInstance(String nickname, String email, String password) {
-        return new User(nickname, email, password);
+    public void setRefreshToken(String refreshToken) { // 추가!
+        this.refreshToken = refreshToken;
     }
 }
